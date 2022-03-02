@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 25px;
+}
+
+.CodeMirror {
+  background-color: black !important;
+  color: white !important;
+  caret-color: red !important;
+  min-height: 100vh;
+}
+
+.CodeMirror-gutters {
+  background-color: black !important;
+  border-right: 1px solid rgb(82, 80, 80) !important;
+}
+.CodeMirror-cursor {
+  border-left: 1px solid #d7caca !important;
+}
+
+.ReactMarkDown {
+  white-space: pre-wrap;
+  color: white;
+}
