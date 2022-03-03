@@ -10,6 +10,13 @@ h2 {
   font-size: 25px;
 }
 
+ul {
+  list-style-type: disc;
+  padding-left: 1.625em;
+}
+
+/* CodeMirror styles */
+
 .CodeMirror {
   background-color: black !important;
   color: white !important;
@@ -25,7 +32,82 @@ h2 {
   border-left: 1px solid #d7caca !important;
 }
 
+.CodeMirror-wrap pre {
+  word-break: break-all;
+}
+
+/* Markdown styles */
+
 .ReactMarkDown {
   white-space: pre-wrap;
   color: white;
+  word-break: break-all;
+}
+
+.ReactMarkDown pre {
+  background-color: #1c1e4f;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  position: relative;
+}
+
+.ReactMarkDown .tab-active {
+  text-decoration: none;
+  color: #2ccd9a;
+  border-bottom: 2px solid #2ccd9a;
+}
+.ReactMarkDown .tab-inactive {
+  text-decoration: none;
+  color: white;
+}
+
+.ReactMarkDown pre div {
+  background-color: #1c1e4f !important;
+}
+.ReactMarkDown pre div pre {
+  padding: 0px !important;
+  background-color: #1c1e4f !important;
+}
+
+.ReactMarkDown pre code {
+  display: inline;
+  color: #24a87e;
+  background-color: transparent;
+  border-radius: 0;
+  font-size: 14px;
+}
+
+.ReactMarkDown pre div::-webkit-scrollbar {
+  width: 0px;
+  height: 6px;
+}
+
+.ReactMarkDown pre div::-webkit-scrollbar {
+  width: 0px;
+  height: 6px;
+}
+.ReactMarkDown pre div::-webkit-scrollbar-thumb {
+  background: #8b7df4;
+  border-radius: 999px;
+}
+
+.ReactMarkDown pre::-webkit-scrollbar-corner {
+  background-color: #1c1e4f;
+  border-radius: 999px;
+}
+
+.highlighted-codeblock div {
+  margin: 0 !important;
+  scroll-padding-left: 1rem;
+  padding: 0.5rem 0 !important;
+}
+
+.highlighted-codeblock div::-webkit-scrollbar {
+  height: 5px;
+}
+
+.highlighted-codeblock div::-webkit-scrollbar-thumb {
+  background: #8b7df4;
+  border-radius: 999px;
 }

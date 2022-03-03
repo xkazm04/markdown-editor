@@ -13,28 +13,15 @@ export const CodeMirrorEditor = ({
   mirrorEditor,
 }: CodeMirrorEditorProps): JSX.Element => {
   const [mirrorValue, setMirrorValue] = useState('');
-
-  const handleTextReplacement = (
-    type: string,
-    prefix: string,
-    sufix: string
-  ) => {
-    const doc = mirrorEditor.current.getDoc();
-    const cursor = doc.getCursor();
-    const selectedText = doc.getSelection();
-    let newText = prefix + selectedText + sufix;
-
-    doc.replaceSelection(newText, cursor);
-  };
-
   return (
     <div className="">
       <CodeMirror
-        editorDidMount={(editor) => (mirrorEditor.current = editor)}
+        editorDidMount={(editor) =>  (mirrorEditor.current = editor)}
         className="border-2 bg-indigo-900 h-auto text-black border-black "
         options={{
           lineNumbers: true,
           mode: 'javascript',
+          
         }}
         value={mirrorValue}
         onBeforeChange={(editor, data, value) => {
