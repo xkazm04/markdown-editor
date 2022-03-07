@@ -1,15 +1,26 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CodeMirrorEditor } from '../CodeMirror/CodeMirror';
 import { Toolbar } from '../Toolbar/Toolbar';
 import { Markdown } from '../MarkdownOutput/Markdown';
 import { Header } from './Header';
+import { SideBar } from './SideBar';
 
 interface LayoutProps {
   children: string;
 }
 
+export interface CurrentMarkdownType {
+  id: number | null;
+  text: string;
+  collection: string;
+}
+
 export const Layout = ({}: LayoutProps): JSX.Element => {
-  const [markdownString, setMarkdownString] = useState('');
+  const [markdown, setMarkdown] = useState<CurrentMarkdownType>({
+    id: null,
+    text: '',
+    collection: '',
+  });
   const mirrorEditor = useRef<any>(null);
 
   const handleTextReplacement = (
@@ -64,16 +75,26 @@ export const Layout = ({}: LayoutProps): JSX.Element => {
     mirrorEditor.current.focus();
   };
 
+  useEffect(() => {
+    const data = localStorage.getItem('lastEditingMarkdown') || '';
+    if (data) {
+      const lastEditingMarkdown: CurrentMarkdownType = JSON.parse(data);
+      setMarkdown((prev) => ({ ...prev, ...lastEditingMarkdown }));
+    }
+  }, []);
+
   return (
     <div className="h-screen grid grid-rows-[80px_56px_1fr]">
       <Header />
       <Toolbar handleTextReplacement={handleTextReplacement} />
-      <div className="grid grid-cols-[50%_50%] w-screen bg-primary-grey max-h-full h-full overflow-hidden">
+      <div className="grid relative grid-cols-[10%_45%_45%]  xl:grid-cols-[20%_40%_40%] w-screen bg-primary-grey max-h-full h-full overflow-hidden">
+        <SideBar markdown={markdown} setMarkdown={setMarkdown} />
         <CodeMirrorEditor
+          markdownString={markdown.text}
           mirrorEditor={mirrorEditor}
-          setMarkdownString={setMarkdownString}
+          setMarkdown={setMarkdown}
         />
-        <Markdown>{markdownString}</Markdown>
+        <Markdown>{markdown.text}</Markdown>
       </div>
     </div>
   );

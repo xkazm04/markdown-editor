@@ -25,7 +25,7 @@ export const Markdown = ({ children }: MarkdownProps): JSX.Element => {
                 rel="noreferrer"
                 target={'_blank'}
                 href={href}
-                className={`${className} no-underline text-[#0000EE]`}
+                className={`${className} no-underline text-[#5d5dbe]`}
               >
                 {children}
               </a>

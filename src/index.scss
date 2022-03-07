@@ -68,6 +68,8 @@ h2 {
   padding: 0.5rem 1rem;
   margin: 1rem 0;
   position: relative;
+  overflow: scroll;
+  width: 100%;
 }
 
 .ReactMarkDown .tab-active {
@@ -165,4 +167,16 @@ h2 {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.cm-s-default .cm-header {
+  color: #fb47ff !important;
+}
+
+.cm-s-default .cm-link {
+  color: rgb(93, 156, 175) !important;
+}
+
+.cm-url {
+  color: yellow !important;
 }

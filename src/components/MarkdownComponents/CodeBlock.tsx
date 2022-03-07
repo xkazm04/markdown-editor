@@ -17,8 +17,6 @@ interface MarkdownCodeBlockProps {
   inlineColor?: string;
 }
 
-
-
 export const MarkdownCodeBlock = ({
   inline,
   node,
@@ -63,7 +61,7 @@ export const MarkdownCodeBlock = ({
       </span>
     </div>
   ) : (
-    <code className={`${className}  ${inlineColor}`} node={node} {...props}>
+    <code className={`${className}   ${inlineColor}`} node={node} {...props}>
       {children}
     </code>
   );
