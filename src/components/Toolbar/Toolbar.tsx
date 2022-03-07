@@ -29,7 +29,7 @@ interface TabsProps {
 
 export const Toolbar = ({ handleTextReplacement }: TabsProps): JSX.Element => {
   return (
-    <div className="flex justify-start items-center bg-primary-grey px-7">
+    <div className="flex justify-start items-center h-14 bg-primary-grey px-7 border-r-2 border-t-2 border-sections_border">
       {syntax.map(({ icon: Icon, type, sufix, prefix, group }, index) => {
         return (
           <div
