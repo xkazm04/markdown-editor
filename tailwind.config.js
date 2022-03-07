@@ -27,6 +27,8 @@ module.exports = {
           200: '#E7BD1A',
           300: '#867018',
         },
+        primary_grey: '#ffffff08',
+        sections_border: '#4b505f',
       },
     },
   },

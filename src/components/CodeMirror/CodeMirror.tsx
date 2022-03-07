@@ -14,14 +14,16 @@ export const CodeMirrorEditor = ({
 }: CodeMirrorEditorProps): JSX.Element => {
   const [mirrorValue, setMirrorValue] = useState('');
   return (
-    <div className="">
+    <div className="max-h-full h-full">
       <CodeMirror
-        editorDidMount={(editor) =>  (mirrorEditor.current = editor)}
-        className="border-2 bg-indigo-900 h-auto text-black border-black "
+        editorDidMount={(editor) => (mirrorEditor.current = editor)}
+        className="border-r-2 border-t-2  h-auto p-4 text-black border-sections_border "
         options={{
-          lineNumbers: true,
-          mode: 'javascript',
-          
+          // lineNumbers: true,,
+          lineWrapping: true,
+          mode: {
+            highlightFormatting: true,
+          },
         }}
         value={mirrorValue}
         onBeforeChange={(editor, data, value) => {

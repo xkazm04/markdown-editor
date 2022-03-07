@@ -1,9 +1,10 @@
 import React from 'react';
+import DXLogo from '../../assets/dx-logo.png';
 
 export const Header = () => {
   return (
-    <div className="h-20 bg-black flex justify-center items-center">
-      This is header
+    <div className="h-20  bg-[#562AD0] px-5 flex justify-start items-center">
+      <img src={DXLogo} alt="DX Hero logo" />
     </div>
   );
 };

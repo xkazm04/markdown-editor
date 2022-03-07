@@ -1,16 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { CodeMirrorEditor } from '../CodeMirror/CodeMirror';
-import { Tabs } from '../EditingTabs/Tabs';
+import { Toolbar } from '../Toolbar/Toolbar';
 import { Markdown } from '../MarkdownOutput/Markdown';
 import { Header } from './Header';
 
 interface LayoutProps {
   children: string;
 }
-
-// one
-// two
-// three
 
 export const Layout = ({}: LayoutProps): JSX.Element => {
   const [markdownString, setMarkdownString] = useState('');
@@ -23,8 +19,8 @@ export const Layout = ({}: LayoutProps): JSX.Element => {
   ) => {
     const doc = mirrorEditor.current.getDoc();
     const cursor = doc.getCursor();
-    
-    if (type === 'unordered list') {
+
+    if (type === 'unordered list' || type === 'ordered list') {
       const listSelection = doc.listSelections();
 
       const startingLine = listSelection[0].anchor.line;
@@ -32,10 +28,20 @@ export const Layout = ({}: LayoutProps): JSX.Element => {
 
       const lines: any[] = [];
 
+      let lineCount = 1;
+
       for (let i = startingLine; i < endingLine + 1; i++) {
         const lineText = doc.getLineHandle(i).text;
         const emptyLineText = lineText.trim();
-        const newLine = emptyLineText ? prefix + lineText : lineText;
+        let newLine;
+        if (type === 'unordered list') {
+          newLine = emptyLineText ? sufix + lineText : lineText;
+        }
+        if (type === 'ordered list') {
+          newLine = emptyLineText ? `${lineCount}. ` + lineText : lineText;
+          lineCount += 1;
+        }
+
         lines.push(newLine);
       }
 
@@ -59,10 +65,10 @@ export const Layout = ({}: LayoutProps): JSX.Element => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="h-screen grid grid-rows-[80px_56px_1fr]">
       <Header />
-      <Tabs handleTextReplacement={handleTextReplacement} />
-      <div className="grid grid-cols-[50%_50%] bg-blue-900 h-screen">
+      <Toolbar handleTextReplacement={handleTextReplacement} />
+      <div className="grid grid-cols-[50%_50%] w-screen bg-primary-grey max-h-full h-full overflow-hidden">
         <CodeMirrorEditor
           mirrorEditor={mirrorEditor}
           setMarkdownString={setMarkdownString}

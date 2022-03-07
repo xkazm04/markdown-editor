@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { copyToClipboard } from '../../utils/copyToClipboard';
 
 declare module 'react' {
   interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
@@ -16,12 +17,7 @@ interface MarkdownCodeBlockProps {
   inlineColor?: string;
 }
 
-export const copyToClipboard = (code: string, cb?: () => void) => {
-  navigator.clipboard.writeText(code);
-  if (cb) {
-    cb();
-  }
-};
+
 
 export const MarkdownCodeBlock = ({
   inline,

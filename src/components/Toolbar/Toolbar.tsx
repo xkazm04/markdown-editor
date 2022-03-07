@@ -16,37 +16,42 @@ import {
   ItalicIcon,
   LinkIcon,
   ListIcon,
+  OrderedListIcon,
+  StrikeThrough,
   TipIcon,
   WarningIcon,
+  Video,
 } from '../../assets/icons/tabs';
 
 interface TabsProps {
   handleTextReplacement: (type: string, sufix: string, prefix: string) => void;
 }
 
-export const Tabs = ({ handleTextReplacement }: TabsProps): JSX.Element => {
+export const Toolbar = ({ handleTextReplacement }: TabsProps): JSX.Element => {
   return (
-    <div className="flex justify-start items-center bg-black border-y-[1px] border-y-slate-700 px-4">
+    <div className="flex justify-start items-center bg-primary-grey px-7">
       {syntax.map(({ icon: Icon, type, sufix, prefix, group }, index) => {
         return (
           <div
-            className="tooltip tooltip-secondary"
+            className="tooltip  tooltip-[#8A90A3]"
             key={index}
             data-tip={type}
           >
             <div
-              onClick={() => handleTextReplacement(type, prefix, sufix)}
+              onClick={() =>
+                !group && handleTextReplacement(type, prefix, sufix)
+              }
               className="relative p-1 cursor-pointer group"
             >
               <Icon key={type} />
               {/* renders dropdown of group of syntaxes */}
               {group && (
-                <div className="absolute z-50 h-auto group-hover:inline-table bottom-0 rounded-md right-0 top-8 bg-[#2d3644] hidden ">
+                <div className="absolute z-50 h-auto group-hover:inline-table bottom-0 rounded-md right-0 top-7 bg-[#2d3644] hidden ">
                   {group?.map(({ icon: Icon, type, prefix, sufix }, index) => {
                     return (
                       <div
                         key={index}
-                        className="tooltip tooltip-secondary tooltip-right"
+                        className="tooltip tooltip-[#8A90A3] tooltip-right"
                         data-tip={type}
                       >
                         <div
@@ -116,6 +121,12 @@ const syntax = [
     sufix: '',
   },
   {
+    icon: StrikeThrough,
+    type: 'strike through',
+    prefix: '~~',
+    sufix: '~~',
+  },
+  {
     icon: BoldIcon,
     type: 'bold',
     prefix: '**',
@@ -142,8 +153,22 @@ const syntax = [
   {
     icon: ListIcon,
     type: 'unordered list',
-    prefix: '- ',
+    prefix: '',
     sufix: '',
+    group: [
+      {
+        icon: ListIcon,
+        type: 'unordered list',
+        prefix: '- ',
+        sufix: '',
+      },
+      {
+        icon: OrderedListIcon,
+        type: 'ordered list',
+        prefix: '',
+        sufix: '',
+      },
+    ],
   },
   {
     icon: ImageIcon,
@@ -159,7 +184,7 @@ const syntax = [
   },
   {
     icon: BlockQuote,
-    type: 'blockquote',
+    type: 'toolbar',
     group: [
       {
         icon: WarningIcon,
@@ -188,5 +213,11 @@ const syntax = [
     ],
     prefix: '',
     sufix: '',
+  },
+  {
+    icon: Video,
+    prefix: '<div youtube-url="',
+    sufix: '"></div>',
+    type: 'youtube video',
   },
 ];

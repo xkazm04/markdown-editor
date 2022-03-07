@@ -11,6 +11,8 @@
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
     "codemirror": "^5.65.2",
+    "commonmark": "^0.30.0",
+    "commonmark-react-renderer": "^4.3.5",
     "daisyui": "^2.2.2",
     "react": "^17.0.2",
     "react-codemirror2": "^7.2.1",
@@ -49,6 +51,8 @@
     ]
   },
   "devDependencies": {
+    "@types/commonmark": "^0.27.5",
+    "@types/commonmark-react-renderer": "^4.3.1",
     "@types/react-syntax-highlighter": "^13.5.2",
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.7",
