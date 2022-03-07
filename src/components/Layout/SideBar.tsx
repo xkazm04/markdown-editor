@@ -102,6 +102,7 @@ export const SideBar = ({
         {strapiData.map((data, index) => {
           return (
             <li
+              className="list-none"
               onClick={() => {
                 setMarkdown((prev) => ({
                   ...prev,

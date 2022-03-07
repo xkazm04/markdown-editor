@@ -4,6 +4,7 @@ import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import { getYoutubeVideoId } from '../../utils/getYoutubeVideoId';
 import { AlertTypes, MarkdownAlert } from '../MarkdownComponents/Blockquote';
+import { MarkdownCodeBlock } from '../MarkdownComponents/CodeBlock';
 import { TabbedCodeBlocks } from '../MarkdownComponents/TabbedCodeBlock';
 
 interface MarkdownProps {
@@ -19,6 +20,18 @@ export const Markdown = ({ children }: MarkdownProps): JSX.Element => {
       <ReactMarkdown
         rehypePlugins={[rehypeRaw, remarkGfm]}
         components={{
+          code({ node, children, className, inline, ...props }) {
+            return (
+              <MarkdownCodeBlock
+                inline={inline}
+                className={className}
+                node={node}
+                {...props}
+              >
+                {children as string}
+              </MarkdownCodeBlock>
+            );
+          },
           a({ children, className, href }) {
             return (
               <a

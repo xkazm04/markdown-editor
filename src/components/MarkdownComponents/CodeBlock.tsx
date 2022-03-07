@@ -37,6 +37,7 @@ export const MarkdownCodeBlock = ({
 
   const codeSnippet = String(children).replace(/\n$/, '');
   const match = /language-(\w+)/.exec(className || '');
+  console.log('inline', inline);
   return !inline && match ? (
     <div className="relative flex justify-between text-xs md:text-sm not-prose">
       <div className="highlighted-codeblock">
@@ -61,7 +62,7 @@ export const MarkdownCodeBlock = ({
       </span>
     </div>
   ) : (
-    <code className={`${className}   ${inlineColor}`} node={node} {...props}>
+    <code className={`${className}`} node={node} {...props}>
       {children}
     </code>
   );
