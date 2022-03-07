@@ -40,6 +40,7 @@ export const SideBar = ({
   const [apiValue, setApiValue] = useState('');
   const [error, setError] = useState('');
   const [strapiData, setStrapiData] = useState<DocumentationData[] | []>([]);
+  const [search, setSearch] = useState('');
 
   const handleFetchAPI = async (e: FormEvent) => {
     e.preventDefault();
@@ -90,47 +91,61 @@ export const SideBar = ({
     );
   };
 
+  const searchArticle = (data: DocumentationData) => {
+    return data.attributes.title
+      .toLowerCase()
+      .includes(search.trim().toLowerCase());
+  };
+
   return (
-    <div className=" grid grid-rows-[60%_30%] z-50 h-full w-full px-5 bg-primary-grey border-t-2 border-sections_border border-r-2">
-      <ul className="overflow-scroll h-full py-3">
+    <div className=" grid grid-rows-[10%_70%_20%] z-50 h-full w-full px-5 bg-primary-grey border-t-2 border-sections_border border-r-2">
+      <Input
+        className=""
+        value={search}
+        onChange={(e) => setSearch((e.target as HTMLInputElement).value)}
+        label="Search"
+      />
+      <div className="py-3 h-full">
         <span className="text-lg font-semibold">Collection CMS</span>
-        {error && (
-          <div className="text-red-400 font-semibold text-center my-5">
-            {error}
-          </div>
-        )}
-        {strapiData.map((data, index) => {
-          return (
-            <li
-              className="list-none"
-              onClick={() => {
-                setMarkdown((prev) => ({
-                  ...prev,
-                  text: data.attributes.markdown,
-                  id: data.id,
-                  collection: apiValue,
-                }));
-                saveLastViewedMarkdown(
-                  data.id,
-                  data.attributes.markdown,
-                  apiValue
-                );
-              }}
-              key={index}
-            >
-              <p
-                className={` text-sm 2xl:text-base my-5 2xl:my-2 cursor-pointer ${
-                  markdown.id === data.id
-                    ? 'text-[#bbace6] font-semibold'
-                    : 'text-white'
-                }`}
+        <ul className="overflow-scroll h-full py-3">
+          {error && (
+            <div className="text-red-400 font-semibold text-center my-5">
+              {error}
+            </div>
+          )}
+          {strapiData.filter(searchArticle).map((data, index) => {
+            return (
+              <li
+                className="list-none"
+                onClick={() => {
+                  setMarkdown((prev) => ({
+                    ...prev,
+                    text: data.attributes.markdown,
+                    id: data.id,
+                    collection: apiValue,
+                  }));
+                  saveLastViewedMarkdown(
+                    data.id,
+                    data.attributes.markdown,
+                    apiValue
+                  );
+                }}
+                key={index}
               >
-                {data.attributes.title}
-              </p>
-            </li>
-          );
-        })}
-      </ul>
+                <p
+                  className={` text-sm 2xl:text-base my-5 2xl:my-2 cursor-pointer ${
+                    markdown.id === data.id
+                      ? 'text-[#bbace6] font-semibold'
+                      : 'text-white'
+                  }`}
+                >
+                  {data.attributes.title}
+                </p>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
       <form onSubmit={handleFetchAPI}>
         <Input
           value={apiValue}
@@ -139,12 +154,7 @@ export const SideBar = ({
         />
         <div className="flex justify-between items-center my-5">
           <span className="text-[#8A90A3]">Cancel</span>
-          <Button
-            type="submit"
-            // onClick={handleFetchAPI}
-            disabled={!apiValue}
-            text="Import"
-          />
+          <Button type="submit" disabled={!apiValue} text="Import" />
         </div>
       </form>
     </div>

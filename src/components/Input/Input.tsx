@@ -10,7 +10,7 @@ export const Input = React.forwardRef(
     ref: LegacyRef<HTMLInputElement> | undefined
   ): JSX.Element => {
     return (
-      <div className="flex flex-col">
+      <div className="flex flex-col py-3">
         <label className="my-1">{label}</label>
         <input
           {...rest}
