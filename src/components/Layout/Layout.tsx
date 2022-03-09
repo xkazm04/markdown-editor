@@ -5,17 +5,13 @@ import { Markdown } from '../MarkdownOutput/Markdown';
 import { Header } from './Header';
 import { SideBar } from './SideBar';
 
-interface LayoutProps {
-  children: string;
-}
-
 export interface CurrentMarkdownType {
   id: number | null;
   text: string;
   collection: string;
 }
 
-export const Layout = ({}: LayoutProps): JSX.Element => {
+export const Layout = (): JSX.Element => {
   const [markdown, setMarkdown] = useState<CurrentMarkdownType>({
     id: null,
     text: '',

@@ -58,7 +58,7 @@ ${activeTab.code}${'```'}`;
           <div className="tabs flex justify-start  items-center py-1 border-b-purple-50">
             {tabs.map((tab, index) => {
               return (
-                <a
+                <span
                   key={index}
                   onClick={() => setActiveTab(tab)}
                   className={`tab tab-bordered  typ-body-s self-center ${
@@ -68,7 +68,7 @@ ${activeTab.code}${'```'}`;
                   } text-purple-100`}
                 >
                   {tab.language}
-                </a>
+                </span>
               );
             })}
           </div>

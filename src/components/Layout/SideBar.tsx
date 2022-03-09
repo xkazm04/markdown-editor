@@ -76,6 +76,7 @@ export const SideBar = ({
       setApiValue(parsed.endpoint);
       setStrapiData(parsed.data);
     }
+    /* eslint-disable jsx-a11y/anchor-is-valid */
   }, []);
 
   const saveLastViewedMarkdown = (

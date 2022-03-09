@@ -75,6 +75,7 @@ export const Markdown = ({ children }: MarkdownProps): JSX.Element => {
               return (
                 <div className="video-container">
                   <iframe
+                    title={new Date().toString()}
                     src={`https://www.youtube.com/embed/${videoID}`}
                     frameBorder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
