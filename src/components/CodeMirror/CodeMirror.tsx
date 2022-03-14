@@ -3,7 +3,7 @@ import { Controlled as CodeMirror } from 'react-codemirror2';
 import 'codemirror/mode/markdown/markdown';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
-import { CurrentMarkdownType } from '../Layout/Layout';
+import { CurrentMarkdownType } from '../../App';
 
 interface CodeMirrorEditorProps {
   setMarkdown: React.Dispatch<React.SetStateAction<CurrentMarkdownType>>;
@@ -26,6 +26,22 @@ export const CodeMirrorEditor = ({
     <div className="max-h-full h-full overflow-y-hidden no-scrollbar">
       <CodeMirror
         editorDidMount={(editor) => {
+          editor.addKeyMap({
+            'Ctrl-B': function (cm) {
+              const selectedText = cm.getSelection();
+              const cursor = cm.getCursor();
+              // addds bold font
+              const newText = '**' + selectedText + '**';
+              cm.replaceSelection(newText, cursor as unknown as string);
+            },
+            'Ctrl-I': function (cm) {
+              const selectedText = cm.getSelection();
+              const cursor = cm.getCursor();
+              // adds italic font
+              const newText = '*' + selectedText + '*';
+              cm.replaceSelection(newText, cursor as unknown as string);
+            },
+          });
           mirrorEditor.current = editor;
         }}
         className="border-r-2 border-t-2 overflow-hidden h-full  p-4 text-black border-sections_border no-scrollbar"
@@ -34,7 +50,7 @@ export const CodeMirrorEditor = ({
           mode: 'markdown',
         }}
         value={mirrorValue}
-        onBeforeChange={(editor, data, value) => {
+        onBeforeChange={(_, __, value) => {
           setMirrorValue(value);
           setMarkdown((prev) => ({ ...prev, text: value }));
         }}

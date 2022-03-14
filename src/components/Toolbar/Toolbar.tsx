@@ -1,27 +1,24 @@
 import React from 'react';
-import {
-  BlockQuote,
-  Blockquote,
-  BoldIcon,
-  CodeIcon,
-  H1Icon,
-  H2Icon,
-  H3Icon,
-  H4Icon,
-  H5Icon,
-  H6Icon,
-  HeadingIcon,
-  ImageIcon,
-  InfoIcon,
-  ItalicIcon,
-  LinkIcon,
-  ListIcon,
-  OrderedListIcon,
-  StrikeThrough,
-  TipIcon,
-  WarningIcon,
-  Video,
-} from '../../assets/icons/tabs';
+import { ReactComponent as Bold } from '../../assets/icons/bold.svg';
+import { ReactComponent as Italic } from '../../assets/icons/italic.svg';
+import { ReactComponent as Blockquote } from '../../assets/icons/blockquote.svg';
+import { ReactComponent as Code } from '../../assets/icons/code.svg';
+import { ReactComponent as List } from '../../assets/icons/list.svg';
+import { ReactComponent as Warning } from '../../assets/icons/warning.svg';
+import { ReactComponent as Info } from '../../assets/icons/info.svg';
+import { ReactComponent as StrikeThrough } from '../../assets/icons/strikethrough.svg';
+import { ReactComponent as Video } from '../../assets/icons/video.svg';
+import { ReactComponent as Tip } from '../../assets/icons/tip.svg';
+import { ReactComponent as H6Icon } from '../../assets/icons/h6.svg';
+import { ReactComponent as H5Icon } from '../../assets/icons/h5.svg';
+import { ReactComponent as H4Icon } from '../../assets/icons/h4.svg';
+import { ReactComponent as H3Icon } from '../../assets/icons/h3.svg';
+import { ReactComponent as H2Icon } from '../../assets/icons/h2.svg';
+import { ReactComponent as H1Icon } from '../../assets/icons/h1.svg';
+import { ReactComponent as HeadingIcon } from '../../assets/icons/heading.svg';
+import { ReactComponent as ImageIcon } from '../../assets/icons/image.svg';
+import { ReactComponent as LinkIcon } from '../../assets/icons/link.svg';
+import { ReactComponent as OrderedListIcon } from '../../assets/icons/ordered-list.svg';
 
 interface TabsProps {
   handleTextReplacement: (type: string, sufix: string, prefix: string) => void;
@@ -127,13 +124,13 @@ const syntax = [
     sufix: '~~',
   },
   {
-    icon: BoldIcon,
+    icon: Bold,
     type: 'bold',
     prefix: '**',
     sufix: '**',
   },
   {
-    icon: ItalicIcon,
+    icon: Italic,
     type: 'italic',
     prefix: '*',
     sufix: '*',
@@ -145,19 +142,19 @@ const syntax = [
     sufix: '',
   },
   {
-    icon: CodeIcon,
+    icon: Code,
     type: 'code',
     prefix: '```\n',
     sufix: '\n\n```',
   },
   {
-    icon: ListIcon,
+    icon: List,
     type: 'unordered list',
     prefix: '',
     sufix: '',
     group: [
       {
-        icon: ListIcon,
+        icon: List,
         type: 'unordered list',
         prefix: '- ',
         sufix: '',
@@ -183,29 +180,29 @@ const syntax = [
     sufix: ')',
   },
   {
-    icon: BlockQuote,
+    icon: Blockquote,
     type: 'toolbar',
     group: [
       {
-        icon: WarningIcon,
+        icon: Warning,
         type: 'warning',
         prefix: '<div className="toolbar-warning">',
         sufix: '</div>',
       },
       {
-        icon: InfoIcon,
+        icon: Info,
         type: 'info',
         prefix: '<div className="toolbar-note">',
         sufix: '</div>',
       },
       {
-        icon: InfoIcon,
+        icon: Info,
         type: 'caution',
         prefix: '<div className="toolbar-caution">',
         sufix: '</div>',
       },
       {
-        icon: TipIcon,
+        icon: Tip,
         type: 'tip',
         prefix: '<div className="toolbar-tip">',
         sufix: '</div>',

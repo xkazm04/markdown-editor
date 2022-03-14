@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import {
-  NoteIcon,
-  WarningIcon,
-  TipIcon,
-  CautionIcon,
-} from '../../assets/icons/blockquote';
+import { ReactComponent as WarningIcon } from '../../assets/icons/warning-box.svg';
+import { ReactComponent as CautionIcon } from '../../assets/icons/caution-box.svg';
+import { ReactComponent as NoteIcon } from '../../assets/icons/tip-box.svg';
+import { ReactComponent as TipIcon } from '../../assets/icons/note-box.svg';
+
 import { MarkdownCodeBlock } from './CodeBlock';
 
 export type AlertTypes =

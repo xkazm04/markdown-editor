@@ -1,7 +1,7 @@
 import React, { FormEvent, useEffect, useState } from 'react';
+import { CurrentMarkdownType } from '../../App';
 import { Button } from '../Button/Button';
 import { Input } from '../Input/Input';
-import { CurrentMarkdownType } from './Layout';
 
 export interface DocumentationData {
   id: number;
@@ -97,13 +97,11 @@ export const SideBar = ({
   };
 
   useEffect(() => {
-    if (strapiData.length !== 0) return;
     const collection = localStorage.getItem('collection') || '';
     if (collection) {
       const parsed: CollectionLSType = JSON.parse(collection);
       setApiValue(parsed.endpoint);
     }
-    /* eslint-disable jsx-a11y/anchor-is-valid */
   }, []);
 
   useEffect(() => {
