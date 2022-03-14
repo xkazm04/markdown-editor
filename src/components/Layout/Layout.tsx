@@ -82,7 +82,7 @@ export const Layout = (): JSX.Element => {
   return (
     <div className="h-screen grid grid-rows-[80px_1fr]">
       <Header />
-      <div className="grid relative grid-cols-[10%_45%_45%]  xl:grid-cols-[20%_40%_40%] w-screen bg-primary-grey max-h-full h-full overflow-hidden">
+      <div className="grid relative grid-cols-[20%_40%_40%]  xl:grid-cols-[20%_40%_40%] w-screen bg-primary-grey max-h-full h-full overflow-hidden">
         <SideBar markdown={markdown} setMarkdown={setMarkdown} />
         <div>
           <Toolbar handleTextReplacement={handleTextReplacement} />

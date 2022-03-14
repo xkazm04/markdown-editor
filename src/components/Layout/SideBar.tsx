@@ -68,15 +68,52 @@ export const SideBar = ({
     }
   };
 
+  const handleMarkdownChangesSave = async () => {
+    try {
+      const body = JSON.stringify({
+        data: { markdown: markdown.text },
+      });
+      const post = await fetch(`${apiValue}/${markdown.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_API_KEY}`,
+        },
+        body,
+      });
+      const response = await post.json();
+      if (!response) return;
+
+      localStorage.setItem(
+        'collection',
+        JSON.stringify({ endpoint: apiValue, data: response.data.data })
+      );
+      saveLastViewedMarkdown(
+        response.data.id,
+        response.data.attributes.markdown,
+        apiValue
+      );
+    } catch (error) {
+      if (error) console.log('error', error);
+    }
+  };
+
   useEffect(() => {
     if (strapiData.length !== 0) return;
     const collection = localStorage.getItem('collection') || '';
     if (collection) {
       const parsed: CollectionLSType = JSON.parse(collection);
       setApiValue(parsed.endpoint);
-      setStrapiData(parsed.data);
     }
     /* eslint-disable jsx-a11y/anchor-is-valid */
+  }, []);
+
+  useEffect(() => {
+    const lastViewedMarkdown = localStorage.getItem('lastEditingMarkdown');
+    if (lastViewedMarkdown) {
+      const parsed = JSON.parse(lastViewedMarkdown);
+      setMarkdown((prev) => ({ ...prev, parsed }));
+    }
   }, []);
 
   const saveLastViewedMarkdown = (
@@ -85,7 +122,6 @@ export const SideBar = ({
     collection: string
   ) => {
     const lastEditingMarkdown = { id, text, collection };
-
     localStorage.setItem(
       'lastEditingMarkdown',
       JSON.stringify(lastEditingMarkdown)
@@ -99,7 +135,7 @@ export const SideBar = ({
   };
 
   return (
-    <div className=" grid grid-rows-[10%_70%_20%] z-50 h-full w-full px-5 bg-primary-grey border-t-2 border-sections_border border-r-2">
+    <div className=" grid grid-rows-[15%_50%_20%] z-50 h-full overflow-x-auto w-full px-5 bg-primary-grey border-t-2 border-sections_border border-r-2">
       <Input
         className=""
         value={search}
@@ -156,6 +192,11 @@ export const SideBar = ({
         <div className="flex justify-between items-center my-5">
           <span className="text-[#8A90A3]">Cancel</span>
           <Button type="submit" disabled={!apiValue} text="Import" />
+          <Button
+            type="button"
+            text="Save"
+            onClick={handleMarkdownChangesSave}
+          />
         </div>
       </form>
     </div>
