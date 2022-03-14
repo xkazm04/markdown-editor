@@ -119,13 +119,13 @@ ol {
 
 .ReactMarkDown table {
   border: 1px solid black;
-  thead,
-  tbody,
-  tr,
-  th,
-  td {
-    border: 1px solid black;
-  }
+}
+.ReactMarkDown table thead,
+tbody,
+tr,
+th,
+td {
+  border: 1px solid black;
 }
 
 .highlighted-codeblock div {
@@ -150,7 +150,6 @@ ol {
   padding: 0 0 0.5rem 0 !important;
 }
 
-// Styles for video iframe in Markdown
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
