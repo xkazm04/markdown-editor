@@ -141,7 +141,7 @@ export const SideBar = ({
         label="Search"
       />
       <div className="py-3 h-full">
-        <span className="text-lg font-semibold">Collection CMS</span>
+        <span className="text-lg font-semibold text-white">Collection CMS</span>
         <ul className="overflow-scroll h-full py-3 no-scrollbar">
           {error && (
             <div className="text-red-400 font-semibold text-center my-5">

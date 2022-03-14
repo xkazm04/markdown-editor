@@ -11,7 +11,7 @@ export const Input = React.forwardRef(
   ): JSX.Element => {
     return (
       <div className="flex flex-col py-3">
-        <label className="my-1">{label}</label>
+        <label className="my-1 text-white">{label}</label>
         <input
           {...rest}
           ref={ref}
