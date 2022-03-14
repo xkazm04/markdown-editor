@@ -80,11 +80,11 @@ export const Layout = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="h-screen grid grid-rows-[80px_1fr]">
+    <div className="max-h-screen h-screen grid grid-rows-[56px_1fr] overflow-hidden">
       <Header />
-      <div className="grid relative grid-cols-[20%_40%_40%]  xl:grid-cols-[20%_40%_40%] w-screen bg-primary-grey max-h-full h-full overflow-hidden">
+      <div className="grid  grid-cols-[20%_40%_40%]  xl:grid-cols-[20%_40%_40%] w-screen bg-primary-grey max-h-full h-full overflow-scroll ">
         <SideBar markdown={markdown} setMarkdown={setMarkdown} />
-        <div>
+        <div className="z-50 max-h-full h-full grid grid-rows-[56px_1fr]  ">
           <Toolbar handleTextReplacement={handleTextReplacement} />
           <CodeMirrorEditor
             markdownString={markdown.text}

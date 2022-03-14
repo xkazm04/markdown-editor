@@ -15,7 +15,7 @@ export const Markdown = ({ children }: MarkdownProps): JSX.Element => {
   return (
     <div
       style={{ overflow: 'scroll' }}
-      className="bg-primary-grey border-t-2 h-[97%] border-[#4b505f] px-5 pt-1 "
+      className="bg-primary-grey border-t-2 h-full overflow-hidden border-[#4b505f] px-5 pt-1 "
     >
       <ReactMarkdown
         rehypePlugins={[rehypeRaw, remarkGfm]}

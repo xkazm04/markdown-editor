@@ -29,11 +29,11 @@ interface TabsProps {
 
 export const Toolbar = ({ handleTextReplacement }: TabsProps): JSX.Element => {
   return (
-    <div className="flex justify-start items-center h-14 bg-primary-grey px-7 border-r-2 border-t-2 border-sections_border">
+    <div className="flex justify-start  w-full z-50 items-center h-14 bg-primary-grey px-2 border-r-2 border-t-2 border-sections_border">
       {syntax.map(({ icon: Icon, type, sufix, prefix, group }, index) => {
         return (
           <div
-            className="tooltip  tooltip-[#8A90A3]"
+            className="tooltip z-50  tooltip-[#8A90A3]"
             key={index}
             data-tip={type}
           >
@@ -51,7 +51,7 @@ export const Toolbar = ({ handleTextReplacement }: TabsProps): JSX.Element => {
                     return (
                       <div
                         key={index}
-                        className="tooltip tooltip-[#8A90A3] tooltip-right"
+                        className="tooltip z-50 tooltip-[#8A90A3] tooltip-right"
                         data-tip={type}
                       >
                         <div

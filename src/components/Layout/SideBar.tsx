@@ -94,7 +94,7 @@ export const SideBar = ({
         apiValue
       );
     } catch (error) {
-      if (error) console.log('error', error);
+      
     }
   };
 
@@ -135,7 +135,7 @@ export const SideBar = ({
   };
 
   return (
-    <div className=" grid grid-rows-[15%_50%_20%] z-50 h-full overflow-x-auto w-full px-5 bg-primary-grey border-t-2 border-sections_border border-r-2">
+    <div className=" grid grid-rows-[15%_50%_20%] z-50 h-full max-h-full overflow-x-auto w-full px-5 bg-primary-grey border-t-2 border-sections_border border-r-2">
       <Input
         className=""
         value={search}
