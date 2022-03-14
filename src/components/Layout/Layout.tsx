@@ -80,7 +80,7 @@ export const Layout = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="max-h-screen h-screen grid grid-rows-[56px_1fr] overflow-hidden">
+    <div className="max-h-screen h-screen grid grid-rows-[56px_1fr] overflow-hidden no-scrollbar">
       <Header />
       <div className="grid  grid-cols-[20%_40%_40%]  xl:grid-cols-[20%_40%_40%] w-screen bg-primary-grey max-h-full h-full overflow-scroll ">
         <SideBar markdown={markdown} setMarkdown={setMarkdown} />

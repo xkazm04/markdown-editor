@@ -93,9 +93,7 @@ export const SideBar = ({
         response.data.attributes.markdown,
         apiValue
       );
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -135,7 +133,7 @@ export const SideBar = ({
   };
 
   return (
-    <div className=" grid grid-rows-[15%_50%_20%] z-50 h-full max-h-full overflow-x-auto w-full px-5 bg-primary-grey border-t-2 border-sections_border border-r-2">
+    <div className=" grid grid-rows-[15%_50%_20%] z-50 h-full max-h-full overflow-x-auto w-full px-5 bg-sidebar border-t-2 border-sections_border border-r-2">
       <Input
         className=""
         value={search}
@@ -144,7 +142,7 @@ export const SideBar = ({
       />
       <div className="py-3 h-full">
         <span className="text-lg font-semibold">Collection CMS</span>
-        <ul className="overflow-scroll h-full py-3">
+        <ul className="overflow-scroll h-full py-3 no-scrollbar">
           {error && (
             <div className="text-red-400 font-semibold text-center my-5">
               {error}

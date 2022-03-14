@@ -23,12 +23,12 @@ export const CodeMirrorEditor = ({
   }, [markdownString]);
 
   return (
-    <div className="max-h-full h-full overflow-y-hidden">
+    <div className="max-h-full h-full overflow-y-hidden no-scrollbar">
       <CodeMirror
         editorDidMount={(editor) => {
           mirrorEditor.current = editor;
         }}
-        className="border-r-2 border-t-2 overflow-hidden h-full  p-4 text-black border-sections_border "
+        className="border-r-2 border-t-2 overflow-hidden h-full  p-4 text-black border-sections_border no-scrollbar"
         options={{
           lineWrapping: true,
           mode: 'markdown',
