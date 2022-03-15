@@ -31,7 +31,7 @@ interface SideBarProps {
 
 interface CollectionLSType {
   endpoint: string;
-  data: DocumentationData[];
+  token: string;
 }
 
 export const SideBar = ({
@@ -96,7 +96,7 @@ export const SideBar = ({
 
         localStorage.setItem(
           'collection',
-          JSON.stringify({ endpoint: apiValue, data: response.data.data })
+          JSON.stringify({ endpoint: apiValue, token: apiToken })
         );
         saveLastViewedMarkdown(
           response.data.id,
@@ -117,6 +117,7 @@ export const SideBar = ({
     if (collection) {
       const parsed: CollectionLSType = JSON.parse(collection);
       setApiValue(parsed.endpoint);
+      setApiToken(parsed.token);
     }
   }, []);
 
@@ -204,7 +205,7 @@ export const SideBar = ({
         <Input
           value={apiToken}
           onChange={(e) => setApiToken((e.target as HTMLInputElement).value)}
-          label="API Token *"
+          label="API Token"
         />
         <div className="flex justify-between items-center my-5">
           <span className="text-[#8A90A3]">Cancel</span>
