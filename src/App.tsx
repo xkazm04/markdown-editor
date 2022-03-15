@@ -91,11 +91,11 @@ export const App = (): JSX.Element => {
 
   return (
     <NotificationContext.Provider value={notificationStore}>
-      <div className="max-h-screen h-screen grid grid-rows-[56px_1fr] overflow-hidden no-scrollbar">
+      <div className="max-h-screen h-screen grid grid-rows-[56px_1fr]  no-scrollbar">
         <Header />
-        <div className="grid  grid-cols-[20%_40%_40%]  xl:grid-cols-[20%_40%_40%] w-screen bg-primary-grey max-h-full h-full overflow-scroll ">
+        <div className="grid  grid-cols-[20%_40%_40%] xl:grid-cols-[20%_40%_40%] w-screen bg-primary-grey max-h-full h-full overflow-scroll ">
           <SideBar markdown={markdown} setMarkdown={setMarkdown} />
-          <div className="z-50 max-h-full h-full grid grid-rows-[56px_1fr]  ">
+          <div className="max-h-full h-full grid grid-rows-[56px_1fr]  ">
             <Toolbar handleTextReplacement={handleTextReplacement} />
             <CodeMirrorEditor
               markdownString={markdown.text}

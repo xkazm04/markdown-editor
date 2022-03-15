@@ -18,46 +18,8 @@ export const Markdown = ({ children }: MarkdownProps): JSX.Element => {
       className="bg-primary-grey border-t-2 h-full overflow-hidden border-[#4b505f] px-5 pt-1 "
     >
       <ReactMarkdown
-        rehypePlugins={[rehypeRaw, remarkGfm]}
+        rehypePlugins={[remarkGfm, rehypeRaw]}
         components={{
-          code({ node, children, className, inline, ...props }) {
-            return (
-              <MarkdownCodeBlock
-                inline={inline}
-                className={className}
-                node={node}
-                {...props}
-              >
-                {children as string}
-              </MarkdownCodeBlock>
-            );
-          },
-          a({ children, className, href }) {
-            return (
-              <a
-                rel="noreferrer"
-                target={'_blank'}
-                href={href}
-                className={`${className} no-underline text-[#5d5dbe]`}
-              >
-                {children}
-              </a>
-            );
-          },
-          li({ children, className }) {
-            return (
-              <li className={`${className}  break-words my-0`}>{children}</li>
-            );
-          },
-          h1: ({ children, ...props }) => {
-            return <h1 {...props}>{children}</h1>;
-          },
-          h2: ({ children, ...props }) => {
-            return <h2 {...props}>{children}</h2>;
-          },
-          h3: ({ children, ...props }) => {
-            return <h3 {...props}>{children}</h3>;
-          },
           div({ className, children, ...props }) {
             const aTypes = [
               'toolbar-note',
@@ -100,6 +62,44 @@ export const Markdown = ({ children }: MarkdownProps): JSX.Element => {
               );
             }
             return null;
+          },
+          code({ node, children, className, inline, ...props }) {
+            return (
+              <MarkdownCodeBlock
+                inline={inline}
+                className={className}
+                node={node}
+                {...props}
+              >
+                {children as string}
+              </MarkdownCodeBlock>
+            );
+          },
+          a({ children, className, href }) {
+            return (
+              <a
+                rel="noreferrer"
+                target={'_blank'}
+                href={href}
+                className={`${className} no-underline text-[#5d5dbe]`}
+              >
+                {children}
+              </a>
+            );
+          },
+          li({ children, className }) {
+            return (
+              <li className={`${className}  break-words my-0`}>{children}</li>
+            );
+          },
+          h1: ({ children, ...props }) => {
+            return <h1 {...props}>{children}</h1>;
+          },
+          h2: ({ children, ...props }) => {
+            return <h2 {...props}>{children}</h2>;
+          },
+          h3: ({ children, ...props }) => {
+            return <h3 {...props}>{children}</h3>;
           },
         }}
         className="ReactMarkDown"

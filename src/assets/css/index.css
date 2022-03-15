@@ -14,12 +14,28 @@
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 42px;
   color: white;
+  font-weight: 700;
 }
 
 h2 {
-  font-size: 25px;
+  font-size: 38px;
+  color: white;
+  font-weight: 700;
+}
+h3 {
+  font-size: 32px;
+  color: white;
+  font-weight: 600;
+}
+h4 {
+  font-size: 30px;
+  color: white;
+  font-weight: 500;
+}
+h5 {
+  font-size: 24px;
   color: white;
 }
 
@@ -65,12 +81,22 @@ ol {
 }
 
 /* Markdown styles */
-
 .ReactMarkDown {
-  white-space: pre-wrap;
+  /* white-space: pre-line; */
   color: #b1b6c3;
-  word-break: break-word;
+  /* word-break: break-word; */
   height: 100% !important;
+}
+
+.ReactMarkDown table {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.ReactMarkDown ul,
+p {
+  margin: 1rem 0;
 }
 
 .ReactMarkDown pre {
@@ -128,15 +154,23 @@ ol {
   border-radius: 999px;
 }
 
-.ReactMarkDown table {
-  border: 1px solid black;
-}
 .ReactMarkDown table thead,
 tbody,
 tr,
 th,
 td {
-  border: 1px solid black;
+  border: 1px solid white;
+  text-align: center;
+}
+
+.ReactMarkDown h1,
+h2,
+h3 {
+  margin-bottom: 1.5rem;
+}
+.ReactMarkDown h4,
+h5 {
+  margin-bottom: 1rem;
 }
 
 .highlighted-codeblock div {

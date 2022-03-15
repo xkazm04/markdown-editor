@@ -204,7 +204,7 @@ export const SideBar = ({
         <Input
           value={apiToken}
           onChange={(e) => setApiToken((e.target as HTMLInputElement).value)}
-          label="API Token"
+          label="API Token *"
         />
         <div className="flex justify-between items-center my-5">
           <span className="text-[#8A90A3]">Cancel</span>
