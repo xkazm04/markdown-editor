@@ -3,7 +3,12 @@ import { CodeMirrorEditor } from './components/CodeMirror/CodeMirror';
 import { Header } from './components/Layout/Header';
 import { SideBar } from './components/Layout/SideBar';
 import { Markdown } from './components/MarkdownOutput/Markdown';
+import { Notification } from './components/Notification/Notification';
 import { Toolbar } from './components/Toolbar/Toolbar';
+import {
+  NotificationContext,
+  useNotificationProvider,
+} from './provider/NotificationProvider';
 
 export interface CurrentMarkdownType {
   id: number | null;
@@ -12,6 +17,7 @@ export interface CurrentMarkdownType {
 }
 
 export const App = (): JSX.Element => {
+  const notificationStore = useNotificationProvider();
   const [markdown, setMarkdown] = useState<CurrentMarkdownType>({
     id: null,
     text: '',
@@ -84,21 +90,24 @@ export const App = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="max-h-screen h-screen grid grid-rows-[56px_1fr] overflow-hidden no-scrollbar">
-      <Header />
-      <div className="grid  grid-cols-[20%_40%_40%]  xl:grid-cols-[20%_40%_40%] w-screen bg-primary-grey max-h-full h-full overflow-scroll ">
-        <SideBar markdown={markdown} setMarkdown={setMarkdown} />
-        <div className="z-50 max-h-full h-full grid grid-rows-[56px_1fr]  ">
-          <Toolbar handleTextReplacement={handleTextReplacement} />
-          <CodeMirrorEditor
-            markdownString={markdown.text}
-            mirrorEditor={mirrorEditor}
-            setMarkdown={setMarkdown}
-          />
+    <NotificationContext.Provider value={notificationStore}>
+      <div className="max-h-screen h-screen grid grid-rows-[56px_1fr] overflow-hidden no-scrollbar">
+        <Header />
+        <div className="grid  grid-cols-[20%_40%_40%]  xl:grid-cols-[20%_40%_40%] w-screen bg-primary-grey max-h-full h-full overflow-scroll ">
+          <SideBar markdown={markdown} setMarkdown={setMarkdown} />
+          <div className="z-50 max-h-full h-full grid grid-rows-[56px_1fr]  ">
+            <Toolbar handleTextReplacement={handleTextReplacement} />
+            <CodeMirrorEditor
+              markdownString={markdown.text}
+              mirrorEditor={mirrorEditor}
+              setMarkdown={setMarkdown}
+            />
+          </div>
+          <Markdown>{markdown.text}</Markdown>
         </div>
-        <Markdown>{markdown.text}</Markdown>
       </div>
-    </div>
+      <Notification />
+    </NotificationContext.Provider>
   );
 };
 

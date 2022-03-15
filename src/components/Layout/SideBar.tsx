@@ -1,5 +1,6 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import { CurrentMarkdownType } from '../../App';
+import { useNotification } from '../../provider/NotificationProvider';
 import { Button } from '../Button/Button';
 import { Input } from '../Input/Input';
 
@@ -41,6 +42,8 @@ export const SideBar = ({
   const [error, setError] = useState('');
   const [strapiData, setStrapiData] = useState<DocumentationData[] | []>([]);
   const [search, setSearch] = useState('');
+  const notificationStore = useNotification();
+  const [apiToken, setApiToken] = useState('');
 
   const handleFetchAPI = async (e: FormEvent) => {
     e.preventDefault();
@@ -52,18 +55,16 @@ export const SideBar = ({
       if (data.error) {
         throw new Error(data.error.message);
       }
-      if (!data.data) return;
+
       localStorage.setItem(
         'collection',
         JSON.stringify({ endpoint: apiValue, data: data.data })
       );
       setStrapiData(data.data);
     } catch (error) {
-      if (error) {
-        if (error && (error as { message: string }).message) {
-          setError((error as { message: string }).message);
-          setTimeout(() => setError(''), 2000);
-        }
+      const errorMsg = (error as { message: string }).message;
+      if (error && errorMsg) {
+        notificationStore?.addNotification('error', errorMsg);
       }
     }
   };
@@ -77,23 +78,38 @@ export const SideBar = ({
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_API_KEY}`,
+          Authorization: `Bearer ${apiToken.trim()}`,
         },
         body,
       });
       const response = await post.json();
-      if (!response) return;
 
-      localStorage.setItem(
-        'collection',
-        JSON.stringify({ endpoint: apiValue, data: response.data.data })
+      if (response.error) {
+        throw new Error(response.error.message);
+      }
+
+      if (response.data) {
+        notificationStore?.addNotification(
+          'success',
+          'Collection has been updated'
+        );
+
+        localStorage.setItem(
+          'collection',
+          JSON.stringify({ endpoint: apiValue, data: response.data.data })
+        );
+        saveLastViewedMarkdown(
+          response.data.id,
+          response.data.attributes.markdown,
+          apiValue
+        );
+      }
+    } catch (error) {
+      notificationStore?.addNotification(
+        'error',
+        (error as { message: string }).message
       );
-      saveLastViewedMarkdown(
-        response.data.id,
-        response.data.attributes.markdown,
-        apiValue
-      );
-    } catch (error) {}
+    }
   };
 
   useEffect(() => {
@@ -131,7 +147,7 @@ export const SideBar = ({
   };
 
   return (
-    <div className=" grid grid-rows-[15%_50%_20%] z-50 h-full max-h-full overflow-x-auto w-full px-5 bg-sidebar border-t-2 border-sections_border border-r-2">
+    <div className="flex flex-col  z-50 h-full max-h-full overflow-x-auto w-full px-5 bg-sidebar border-t-2 border-sections_border border-r-2">
       <Input
         className=""
         value={search}
@@ -185,14 +201,19 @@ export const SideBar = ({
           onChange={(e) => setApiValue((e.target as HTMLInputElement).value)}
           label="Connected API"
         />
+        <Input
+          value={apiToken}
+          onChange={(e) => setApiToken((e.target as HTMLInputElement).value)}
+          label="API Token"
+        />
         <div className="flex justify-between items-center my-5">
           <span className="text-[#8A90A3]">Cancel</span>
-          <Button type="submit" disabled={!apiValue} text="Import" />
           <Button
             type="button"
             text="Save"
             onClick={handleMarkdownChangesSave}
           />
+          <Button type="submit" disabled={!apiValue} text="Import" />
         </div>
       </form>
     </div>
