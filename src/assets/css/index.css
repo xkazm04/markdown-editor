@@ -78,6 +78,7 @@ ol {
   min-height: 100% !important;
   height: 500px !important;
   font-family: 'JetBrains Mono', monospace !important;
+  font-size: .9rem
 }
 
 .CodeMirror-gutters {
