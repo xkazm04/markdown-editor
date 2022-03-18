@@ -3,6 +3,7 @@ import { CurrentMarkdownType } from '../../App';
 import { useNotification } from '../../provider/NotificationProvider';
 import { Button } from '../Button/Button';
 import { Input } from '../Input/Input';
+import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg'
 
 export interface DocumentationData {
   id: number;
@@ -148,16 +149,18 @@ export const SideBar = ({
   };
 
   return (
-    <div className="flex flex-col  z-50 h-full max-h-full overflow-x-auto w-full px-5 bg-sidebar border-t-2 border-sections_border border-r-2">
+    <div className="flex flex-col z-50 h-full max-h-full overflow-x-auto w-full bg-[white]/5 border-t-2 border-sections_border border-r-2">
       <Input
-        className=""
+        containerClass="px-5"
+        inputClass="pl-10"
         value={search}
         onChange={(e) => setSearch((e.target as HTMLInputElement).value)}
-        label="Search"
+        placeholder="Search..."
+        icon={<SearchIcon className="absolute top-5 left-7" />}
       />
-      <div className="py-3 h-full">
-        <span className="text-lg font-semibold text-white">Collection CMS</span>
-        <ul className="overflow-scroll h-full py-3 no-scrollbar">
+      <div className="py-3 h-full border-b-2 border-[white]/5 mb-4">
+        <span className="text-lg font-semibold text-white mx-5">Collection CMS</span>
+        <ul className="overflow-scroll h-full py-3 no-scrollbar mx-5">
           {error && (
             <div className="text-red-400 font-semibold text-center my-5">
               {error}
@@ -196,7 +199,7 @@ export const SideBar = ({
           })}
         </ul>
       </div>
-      <form onSubmit={handleFetchAPI}>
+      <form className="mx-5" onSubmit={handleFetchAPI}>
         <Input
           value={apiValue}
           onChange={(e) => setApiValue((e.target as HTMLInputElement).value)}

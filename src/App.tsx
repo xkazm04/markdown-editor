@@ -91,9 +91,9 @@ export const App = (): JSX.Element => {
 
   return (
     <NotificationContext.Provider value={notificationStore}>
-      <div className="max-h-screen h-screen grid grid-rows-[56px_1fr]  no-scrollbar">
+      <div className="max-h-screen h-screen grid grid-rows-[56px_1fr] no-scrollbar">
         <Header />
-        <div className="grid  grid-cols-[20%_40%_40%] xl:grid-cols-[20%_40%_40%] w-screen bg-primary-grey max-h-full h-full overflow-scroll ">
+        <div className="grid  grid-cols-[20%_40%_40%] xl:grid-cols-[20%_40%_40%] w-screen max-h-[calc(100vh-56px)]">
           <SideBar markdown={markdown} setMarkdown={setMarkdown} />
           <div className="max-h-full h-full grid grid-rows-[56px_1fr]  ">
             <Toolbar handleTextReplacement={handleTextReplacement} />
@@ -103,7 +103,7 @@ export const App = (): JSX.Element => {
               setMarkdown={setMarkdown}
             />
           </div>
-          <Markdown>{markdown.text}</Markdown>
+            <Markdown>{markdown.text}</Markdown>
         </div>
       </div>
       <Notification />

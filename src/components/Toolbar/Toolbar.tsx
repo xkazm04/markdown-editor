@@ -26,7 +26,7 @@ interface TabsProps {
 
 export const Toolbar = ({ handleTextReplacement }: TabsProps): JSX.Element => {
   return (
-    <div className="flex justify-start  w-full  items-center h-14 bg-primary-grey px-2 border-r-2 border-t-2 border-sections_border">
+    <div className="flex justify-start  w-full  items-center h-14 px-2 border-r-2 border-t-2 border-sections_border">
       {syntax.map(({ icon: Icon, type, sufix, prefix, group }, index) => {
         return (
           <div
